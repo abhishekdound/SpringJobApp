@@ -73,9 +73,46 @@ public class JobRepo {
     public List<JobPost> viewAllJobs(){
         return list;
     }
-    public void addJob(JobPost jobPost){
+    public JobPost addJob(JobPost jobPost){
         list.add(jobPost);
-        System.out.println(list);
+        return jobPost;
     }
 
+    public JobPost getJob(int n) {
+        return list.stream().filter(i->i.getPostId()==n).findFirst().orElse(null);
+    }
+
+    public JobPost updateList(JobPost jobPost) {
+
+        int index=0;
+        boolean flag=false;
+        for (JobPost jobPost1:list){
+            if(jobPost1.getPostId()==jobPost.getPostId()){
+                flag=true;
+                break;
+            }
+            ++index;
+        }
+        if(!flag){
+            return null;
+        }
+        list.set(index,jobPost);
+        return list.get(index);
+    }
+
+    public void deleteJob(int n) {
+        int i=0;
+        boolean flag=false;
+        for (JobPost jobPost:list){
+            if (jobPost.getPostId()==n){
+                flag=true;
+                break;
+            }
+            ++i;
+        }
+        if(!flag){
+            return;
+        }
+        list.remove(i);
+    }
 }

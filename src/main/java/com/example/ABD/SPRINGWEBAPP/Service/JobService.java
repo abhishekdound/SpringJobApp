@@ -15,7 +15,18 @@ public class JobService {
         return repo.viewAllJobs();
     }
 
-    public void addJob(JobPost jobPost){
-        repo.addJob(jobPost);
+    public JobPost addJob(JobPost jobPost){
+        return repo.addJob(jobPost);
+    }
+    public JobPost getJob(int n){
+        return repo.getJob(n);
+    }
+
+    public JobPost updateJob(JobPost jobPost) {
+        return repo.updateList(jobPost);
+    }
+
+    public void deleteJob(int n) {
+        repo.deleteJob(n);
     }
 }
